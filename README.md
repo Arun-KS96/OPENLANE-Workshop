@@ -193,7 +193,7 @@ Once the extracted file is generated we need to run the below command to output 
 
 ![](/images/29.png)
 
-### Spice Wrapper for Simulation
+### Spice Simulation using ngspice
 
 SPICE file created from sky130_inv.ext - technology:
 
