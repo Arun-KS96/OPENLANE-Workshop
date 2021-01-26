@@ -353,9 +353,9 @@ Writing SPEF file is done:
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Kunal Ghosh - Co-founder (VSD Corp. Pvt. Ltd)]
-* [Nickson Jose - VSD VLSI Engineer]
-* [Akurathi Radhika]
-* [Praharsha ]
+* Kunal Ghosh - Co-founder (VSD Corp. Pvt. Ltd)
+* Nickson Jose - VSD VLSI Engineer
+* Akurathi Radhika
+* Praharsha 
 
 
