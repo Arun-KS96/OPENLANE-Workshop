@@ -11,9 +11,10 @@
 
 
 
+
 <!-- INDEX -->
 <details open="open">
-  <summary>Table of Contents</summary>
+  <summary>INDEX</summary>
   <ol>
     <li>
       <a href="#about-the-workshop">About The Workshop</a>
@@ -21,7 +22,7 @@
     <li>
       <a href="#day-1-commencement-of-open-source-eda">Day-1 Commencement of Open Source EDA</a>
       <ul>
-        <li><a href="#calling-openlane">Calling OpenLANE</a></li>
+        <li><a href="#invoking-openlane">Invoking OpenLane</a></li>
         <li><a href="#package-importing">Package Importing</a></li>
         <li><a href="#design-folder">Design Folder</a></li>
         <li><a href="#design-folder-hierarchy">Design Folder Hierarchy</a></li>
@@ -29,6 +30,54 @@
         <li><a href="#synthesis">Synthesis</a></li>
       </ul>
     </li>
+    <li>
+    <a href="#day-2-chip-floorplanning-and-placement">Day-2 Chip Floorplanning and Placement</a>
+      <ul>
+        <li><a href="#utilization-factor-and-aspect-ratio">Utilization Factor and Aspect Ratio</a></li>
+        <li><a href="#preplaced-cells">Preplaced Cells</a></li>
+        <li><a href="#decoupling-capacitors">Decouping Capacitors</a></li>
+        <li><a href="#power-planning">Power Planning</a></li>
+        <li><a href="#pin-placement">Pin Placement and Logical Cell Placement Blockage</a></li>
+        <li><a href="#floorplanning-with-openlane">Floorplanning with OpenLane</a></li>
+        <li><a href="#viewing-floorplan-in-magic">Viewing Floorplan in Magic</a></li>
+        <li><a href="#placement">Placement</a></li>
+        <li><a href="#viewing-placement-in-magic">Viewing Placement in Magic</a></li>
+        <li><a href="#standard-cell-design-flow">Standard Cell Design Flow</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#day-3-design-library-cell">Day-3 Design Library Cell</a>
+      <ul>
+        <li><a href="#layout-of-an-inverter-using-magic">Layout of an Inverter using Magic</a></li>
+        <li><a href="#device-conjecture">Device Conjecture</a></li>
+        <li><a href="#parasitics-extraction-with-magic">Parasitics Extraction with Magic</a></li>
+        <li><a href="#spice-simulation-using-magic">Spice Simulation using ngspice</a></li>
+      </ul>
+    </li>  
+    <li>
+      <a href="#day-4-layout-timing-analysis-and-cts">Day-4 Layout STA and Clock Tree Synthesis</a>
+      <ul>
+        <li><a href="#lef-files-introduction">LEF Files Introduction</a></li>
+        <li><a href="#standard-cell-pin-placement">Standard Cell Pin Placement</a></li>
+        <li><a href="#writing-lef-in-magic">Writing LEF in Magic</a></li>
+        <li><a href="#including-custom-cells-in-openlane">Including Custom Cells in OpenLane</a></li>
+        <li><a href="#fixing-slack-violations">Fixing Slack Violations</a></li>
+        <li><a href="#clock-tree-synthesis">Clock Tree Synthesis</a></li>
+        <li><a href="#replace-the-cell-example">Replace the Cell Example</a></li>
+        <li><a href="#post-cts-sta-analysis">Post-CTS STA Analysis</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#day-5-final-steps-routing-and-spef-extraction">Day-5 Final Steps Routing and SPEF Extraction</a>
+      <ul>
+        <li><a href="#routing">Routing</a></li>
+        <li><a href="#generate-power-distribution-network">Generate Power Distribution Network</a></li>
+        <li><a href="#spef-extraction">SPEF Extraction</a></li>
+      </ul>
+    </li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
 
 <!-- About the Workshop -->
@@ -51,7 +100,6 @@ OpenLane is a fully-automated RTL2GDS flow which includes several components i.e
   - There are two modes to run OpenLane i.e. interactively and autonomous mode
   - '-interactive' is used here to run the flow.tcl script in interactive mode 
    
-
 ### Package Importing
 To import the packages into the OpenLane tool we run the following command: 
 
@@ -81,18 +129,17 @@ Once the preparation is complete, go to the openlane_flow/design/picorv32a folde
 
   ![](/images/8.png)
 
-
 ### Synthesis
 
 To run synthesis just type "run_synthesis" command inside the OpenLane tool:
 
   ![](/images/10.png)
-  
-  
-<!-- Day 2 Chip Floorplanning and Standard Cells-->
-##  Day 2 Chip Floorplanning and Placement
 
-### Aspect Ratio and Utilization Factor
+      
+<!-- Day-2 Chip Floorplanning and Placement-->
+##  Day-2 Chip Floorplanning and Placement
+
+### Utilization Factor and Aspect Ratio
 
 Utilization factor is defined as the ratio of total area occupied by the netlist and total area of the core. If the utilization factor comes out to be 1, then the utilization of the core is 100% and no area left out for the placement of other cells or buffers. So, we usually go for 50% or 60% utilization because if there is some need of buffering the clock tree then there would be enough space to place some buffres on the chip.
 
@@ -114,36 +161,35 @@ Power planning is a step in which we create multiple sources of power supply. Fo
 
 Pin placement is a step in which we place the IO pins in the area between core and die. Pin placement uses the netlist information to find the appropriate location for a pin to be placed between core and die. After pin placement we place a blockage in the area between core and a die which ensures that there will be no logic cells accidently placed in this area. 
 
-### Floorplanning with OpenLANE
+### Floorplanning with OpenLane
 
-To run floorplan in OpenLANE:
+To run floorplan in OpenLane:
 
   ![](/images/11.png)
 
-As with all other stages, the floorplanning will be run according to configuration settings in the design specific config.tcl file. The output the the floorplanning phase is a DEF file which describes core area and placement of standard cell SITES:
+As with all other stages, the floorplanning will be run according to configuration settings in the design specific _config.tcl_ file. The output the the floorplanning phase is a DEF file which describes core area and placement of standard cell SITES:
 
   ![](/images/12.png)
 
 ### Viewing Floorplan in Magic
+
 To view our floorplan in Magic we need to provide three files as input:
 
-  1. Magic technology file (sky130A.tech)
-  2. Def file of floorplan
-  3. Merged LEF file
+  * _Magic technology file (sky130A.tech)_
+  * _Def file of floorplan_
+  * _Merged LEF file_
 
   ![](/images/13.png)
     
   ![](/images/14.png)
 
-
 ### Placement
 
-The next step after floorplanning is placement. In this step, we place the logical cells i.e. flip-flop, AND gate etc. on the chip where we find the appropriate location. After running floorplanning in the OpenLane, we run the placement using "run_placement" command.
+The next step after floorplanning is placement. In this step, we place the logical cells i.e. flip-flop, AND gate etc. on the chip where we find the appropriate location. After running floorplanning in the OpenLane, we run the placement using **"run_placement"** command.
 
 To do placement in OpenLANE:
 
   ![](/images/15.png)
-
 
 ### Viewing Placement in Magic
 
@@ -157,13 +203,13 @@ To view placement in Magic the command mirrors viewing floorplanning:
 
 Cell design flow is done in 3 parts:
 
-  - Inputs - PDKs (Process design kits), DRC & LVS rules, SPICE models, library & user-defined specs.
-  - Design Steps - Circuit Design, Layout Design, Characterization
-  - Outputs - CDL (Circuit Description Language), GDSII, LEF, extracted Spice netlist (.cir), timing, noise, power.libs, function.
+  * _Inputs - PDKs (Process design kits), DRC & LVS rules, SPICE models, library & user-defined specs._
+  * _Design Steps - Circuit Design, Layout Design, Characterization_
+  * _Outputs - CDL (Circuit Description Language), GDSII, LEF, extracted Spice netlist (.cir), timing, noise, power.libs, function._
 
 
-<!-- Day 3 Design Library Cell -->
-## Day 3 Design Library Cell
+<!-- Day-3 Design Library Cell -->
+## Day-3 Design Library Cell
 
 ### Layout of an Inverter using Magic
 
@@ -195,7 +241,7 @@ Once the extracted file is generated we need to run the below command to output 
 
 ### Spice Simulation using ngspice
 
-SPICE file created from sky130_inv.ext - technology:
+SPICE file created from *sky130_inv.ext* - technology:
 
 ![](/images/30.png)
 
@@ -208,8 +254,8 @@ We are the plotting the output i.e. y vs time while sweeping the input i.e. a:
 ![](/images/32.png)
 
 
-<!-- Day 4 Layout STA and Clock Tree Synthesis -->
-##  Day 4 Layout STA and Clock Tree Synthesis
+<!-- Day-4 Layout STA and Clock Tree Synthesis -->
+##  Day-4 Layout STA and Clock Tree Synthesis
 
 
 Place and routing (PnR) is featured using an essence view of the GDS files generated by Magic. Metal and pin information are included in the abstract information.
@@ -217,8 +263,8 @@ Place and routing (PnR) is featured using an essence view of the GDS files gener
 ### LEF Files Introduction
 
 There are two types of LEF files, one is the **technology lef** and the other one is the **cell lef**:
-  * Technology LEF - _It contains layer information, via information, and restricted DRC rules_
-  * Cell LEF - _It contains the abstract information of standard cells_
+  * _Technology LEF - It contains layer information, via information, and restricted DRC rules_
+  * _Cell LEF - It contains the abstract information of standard cells_
 
 ![](/images/33.png)
 
@@ -246,12 +292,12 @@ sky130_vsdinv.lef file:
 
 ![](/images/37.png)
 
-### Including Custom Cells in OpenLANE
+### Including Custom Cells in OpenLane
 
 To include the new cells in OpenLane we need to do some configuration:
-  1. Characterize new cell for specified corners
-  2. Include cell level library file in top level library file
-  3. Now we configure the config.tcl file:
+  * _Characterize new cell for specified corners_
+  * _Include cell level library file in top level library file_
+  * _Now we configure the config.tcl file:_
 
   ![](/images/38.png)
 
@@ -310,12 +356,15 @@ Now, we have to create .db file i.e. pico_cts.db and after that we have to read 
 
 ![](/images/49.png)
 
-Now we have to read the verilog file, min and max library files and the sdc file:
+Now we have to read the verilog file, min and max library files, and the sdc file:
 
 ![](/images/51.png)
 
-<!-- Day 5 Final Steps Routing and SPEF Extraction -->
-##  Day 5 Final Steps Routing and SPEF Extraction
+
+<!-- Day-5 Final Steps Routing and SPEF Extraction -->
+##  Day-5 Final Steps Routing and SPEF Extraction
+
+### Routing
 
 After completing the clock tree synthesis and the static timing analysis we go for the routing. First we have the check the CURRENT_DEF:
 
@@ -351,11 +400,10 @@ Writing SPEF file is done:
 
 ![](/images/52.png)
 
+
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * Kunal Ghosh - Co-founder (VSD Corp. Pvt. Ltd)
-* Nickson Jose - VSD VLSI Engineer
+* Nickson Jose - VSD VLSI Engineer]
 * Akurathi Radhika
 * Praharsha 
-
-
