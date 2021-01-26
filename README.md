@@ -157,9 +157,9 @@ To view placement in Magic the command mirrors viewing floorplanning:
 
 Cell design flow is done in 3 parts:
 
-  A. Inputs - PDKs (Process design kits), DRC & LVS rules, SPICE models, library & user-defined specs.
-  B. Design Steps - Circuit Design, Layout Design, Characterization
-  C. Outputs - CDL (Circuit Description Language), GDSII, LEF, extracted Spice netlist (.cir), timing, noise, power.libs, function.
+  - Inputs - PDKs (Process design kits), DRC & LVS rules, SPICE models, library & user-defined specs.
+  - Design Steps - Circuit Design, Layout Design, Characterization
+  - Outputs - CDL (Circuit Description Language), GDSII, LEF, extracted Spice netlist (.cir), timing, noise, power.libs, function.
 
 
 <!-- Day 3 Design Library Cell -->
