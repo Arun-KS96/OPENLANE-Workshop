@@ -17,12 +17,12 @@
   <summary>INDEX</summary>
   <ol>
     <li>
-      <a href="#about-the-workshop">About The Workshop</a>
+      <a href="#about-the-project">About The Project</a>
     </li>
     <li>
       <a href="#day-1-commencement-of-open-source-eda">Day-1 Commencement of Open Source EDA</a>
       <ul>
-        <li><a href="#invoking-openlane">Invoking OpenLane</a></li>
+        <li><a href="#invoking-openlane">Invoking OpenLANE</a></li>
         <li><a href="#package-importing">Package Importing</a></li>
         <li><a href="#design-folder">Design Folder</a></li>
         <li><a href="#design-folder-hierarchy">Design Folder Hierarchy</a></li>
@@ -80,10 +80,10 @@
 </details>
 
 
-<!-- About the Workshop -->
-## About The Workshop
+<!-- About the Project -->
+## About The Project
 
-This is the advanced physical design workshop which mainly focuses on the RTL2GDS flow using OpenLane/Sky130. In this workshop, we go through each and every step of a physical design flow i.e. synthesis, floorplanning, placement, clock tree synthesis, routing and static timing analysis.
+This project is mainly focuses on the RTL2GDS flow using the open source EDA tool OpenLane/Sky130. In this project, we go through each and every step of a physical design flow i.e. synthesis, floorplanning, placement, clock tree synthesis, routing, static timing analysis anf SPEF extraction.
 
 OpenLane is a fully-automated RTL2GDS flow which includes several components i.e. OpenRoad, Magic, Yosys, Fault, Netgen etc. This tool is started for true open source tape-out experience with the goal to produce clean GDSII without any human intervention. 
 
@@ -94,11 +94,11 @@ OpenLane is a fully-automated RTL2GDS flow which includes several components i.e
 ### Invoking OpenLane
 
 ![](/Figures/1.1.png)
-  - Open terminal and change directory to work/tools/openlane_working_dir/openLANE_flow
-  - List the contents of the openLANE_flow folder by using 'ls -ltr'
-  - Then type './flow.tcl -interactive' which runs the OPENLANE flow
+  - Open terminal and change directory to _work/tools/openlane_working_dir/openLANE_flow_
+  - List the contents of the openLANE_flow folder by using _ls -ltr_
+  - Then type _./flow.tcl -interactive_ which runs the OPENLANE flow
   - There are two modes to run OpenLane i.e. interactively and autonomous mode
-  - '-interactive' is used here to run the flow.tcl script in interactive mode 
+  - _-interactive_ is used here to run the flow.tcl script in interactive mode 
    
 ### Package Importing
 To import the packages into the OpenLane tool we run the following command: 
@@ -106,7 +106,7 @@ To import the packages into the OpenLane tool we run the following command:
 ![](/Figures/1.2.png)
 
 ### Design Folder
-There are lots of design available in the OpenLane which are extracted from the openlane_flow/designs folder:
+There are lots of design available in the OpenLane which are extracted from the _openlane_flow/designs_ folder:
 
 ![](/Figures/1.3.png)
 
@@ -114,34 +114,46 @@ There are lots of design available in the OpenLane which are extracted from the 
 
 ![](/Figures/1.4.png)
 
-Each design hierarchy contains two different components i.e. src folder and config.tcl files. Src folder consists of verilog files and SDC constraints files whereas config.tcl file contains the design configuration switches which is used by OpenLane. 
+Each design hierarchy contains two different components i.e. **src folder** and **config.tcl** files. Src folder consists of verilog files and SDC constraints files whereas config.tcl file contains the design configuration switches which is used by OpenLane. 
 
-An example of a configuration file is given:
+An example of a configuration file is given below:
 
   ![](/Figures/1.5.png)
 
 ### Prepare Design
-Now, we prepare our design. So, to prepare our design we used the command called as "prep". It is used to make the file structure for our design. We also build a tag with the prep command shown below:
+Now, we prepare our design. So, to prepare our design we used the command called as _prep_. It is used to make the file structure for our design. We also build a tag with the prep command shown below:
 
   ![](/Figures/1.6.png)
+  
+Preparation is completed:
 
-Once the preparation is complete, go to the openlane_flow/design/picorv32a folder and you'll see one more directory called as trial_run1 is created under the runs folder, shown below:
+  ![](/Figures/1.8.png)
+
+Once the preparation is complete, go to the _openlane_flow/design/picorv32a_ folder and you'll see one more directory called as _trial_run1_ is created under the runs folder, shown below:
 
   ![](/Figures/1.7.png)
 
 ### Synthesis
 
-To run synthesis just type "run_synthesis" command inside the OpenLane tool:
-
-  ![](/Figures/1.8.png)
+To run synthesis just type _run_synthesis_ command inside the OpenLANE tool:
   
   ![](/Figures/1.9.png)
+  
+Synthesis was successful:
   
   ![](/Figures/1.10.png)
 
       
 <!-- Day-2 Chip Floorplanning and Placement-->
 ##  Day-2 Chip Floorplanning and Placement
+
+Floorplanning is basically the process of placing the logical blocks or IP's on a silicon chip. We basically place the logical blocks inside the core area which is enclosed by a die and a die is nothing but a small semiconductor material sample on which the circuit is fabricated. Floorplanning consists of various steps:
+1. Define width and height of a core and a die.
+2. Define locations of pre-placed cells.
+3. Surround pre-placed cells with the decoupling capacitors.
+4. Power Planning
+5. Pin Placement
+6. Logical Cell Placement Blockage
 
 ### Utilization Factor and Aspect Ratio
 
@@ -165,15 +177,19 @@ Power planning is a step in which we create multiple sources of power supply. Fo
 
 Pin placement is a step in which we place the IO pins in the area between core and die. Pin placement uses the netlist information to find the appropriate location for a pin to be placed between core and die. After pin placement we place a blockage in the area between core and a die which ensures that there will be no logic cells accidently placed in this area. 
 
-### Floorplanning with OpenLane
+### Floorplanning with OpenLANE
 
-To run floorplan in OpenLane:
+To run floorplan in OpenLANE:
 
   ![](/Figures/2.1.png)
 
-As with all other stages, the floorplanning will be run according to configuration settings in the design specific _config.tcl_ file. The output the the floorplanning phase is a DEF file which describes core area and placement of standard cell SITES:
+In the figure below you see _picorv32a.floorplan.def_ file which describes the core area and placement of standard cell sites.
 
   ![](/Figures/2.2.png))
+  
+Floorplanning runs successfully:
+
+  ![](/Figures/2.3.png)
 
 ### Viewing Floorplan in Magic
 
@@ -182,8 +198,8 @@ To view our floorplan in Magic we need to provide three files as input:
   * _Magic technology file (sky130A.tech)_
   * _Def file of floorplan_
   * _Merged LEF file_
-
-  ![](/Figures/2.3.png)
+  
+Below we can see the layout view in the MAGIC: 
     
   ![](/Figures/2.4.png)
 
@@ -194,14 +210,18 @@ The next step after floorplanning is placement. In this step, we place the logic
 To do placement in OpenLANE:
 
   ![](/Figures/2.5.png)
+  
+Placement runs successfully:
+
+  ![](/Figures/2.6.png)
 
 ### Viewing Placement in Magic
 
-To view placement in Magic the command mirrors viewing floorplanning:
+To view placement in Magic we use the following command:
 
-  ![](/Figures/2.6.png)
-  
   ![](/Figures/2.7.png)
+  
+This is _picorv32a_ in MAGIC:
   
   ![](/Figures/2.8.png)
 
@@ -229,7 +249,7 @@ Below we'll see the layout of an inverter in magic:
 
 ### Device Conjecture
 
-To know the layer/device onto the layout you just need to hover over the object and press s until you select the object which you want to select and then run the what command in the tkcon window.
+To know the layer/device onto the layout you just need to hover over the object and press s until you select the object which you want to select and then run the _what_ command in the tkcon window.
 
 ![](/Figures/3.3.png)
 
@@ -265,7 +285,6 @@ We are the plotting the output i.e. y vs time while sweeping the input i.e. a:
 <!-- Day-4 Layout STA and Clock Tree Synthesis -->
 ##  Day-4 Layout STA and Clock Tree Synthesis
 
-
 Place and routing (PnR) is featured using an essence view of the GDS files generated by Magic. Metal and pin information are included in the abstract information.
 
 ### LEF Files Introduction
@@ -276,7 +295,7 @@ There are two types of LEF files, one is the **technology lef** and the other on
 
 ![](/Figures/4.1.png)
 
-Above you see a tracks.info file which contains the offset and pitch information of different layers. In the fig. above you see, the metal1 layer the x or horizontal layer is at an offset of 0.17 and a pitch of 0.34. The metal2 layer the x is at an offset of 0.23 and a pitch of 0.46 and so on. 
+Above you see a _tracks.info_ file which contains the offset and pitch information of different layers. In the fig. above you see, the metal1 layer the x or horizontal layer is at an offset of 0.17 and a pitch of 0.34. The metal2 layer the x is at an offset of 0.23 and a pitch of 0.46 and so on. 
 
 ### Standard Cell Pin Placement
 
@@ -310,11 +329,11 @@ To include the new cells in OpenLane we need to do some configuration:
   ![](/Figures/4.6.png)
 
 
-  4. Overwrite trial_run1 to include new configuration switches:
+  * _Overwrite trial_run1 to include new configuration switches:_
   
   ![](/Figures/4.7.png)
 
-  5. Now we run two additional commands to include extra cell LEFs:
+  * _Now we run two additional commands to include extra cell LEFs:_
   
   ![](/Figures/4.8.png)
 
@@ -332,7 +351,7 @@ To improve the slack value we use the technique of upsizing the cell. To do the 
 
 ![](/Figures/4.10.png)
 
-After this we run the report_checks command to check the slack value:
+After this we run the _report_checks_ command to check the slack value:
 
 ![](/Figures/4.11.png)
 
@@ -348,9 +367,9 @@ CTS runs successfully:
 
 ### Post-CTS STA Analysis
 
-OpenLane contains the OpenRoad application unified into its flow and the OpenRoad has OpenSTA unified into its flow. Therefore, we run the STA within OpenLane by calling OpenRoad:
+OpenLANE contains the OpenRoad application unified into its flow and the OpenRoad has OpenSTA unified into its flow. Therefore, we run the STA within OpenLANE by calling OpenRoad:
 
-To call OpenRoad from OpenLane you just run the below command inside the OpenLane:
+To call OpenRoad from OpenLANE you just run the below command inside the OpenLANE:
 
 ![](/Figures/4.14.png)
 
@@ -378,13 +397,13 @@ After completing the clock tree synthesis and the static timing analysis we go f
 
 ![](/Figures/5.1.png)
 
-Then, we run the routing in the OpenLane:
+Then, we run the routing in the OpenLANE:
 
 ![](/Figures/5.2.png)
 
-Routing runs succesfully:
+Routing runs successfully:
 
-!![](/Figures/5.3.png)
+![](/Figures/5.3.png)
 
 ### Generate Power Distribution Network
 
@@ -412,6 +431,6 @@ Writing SPEF file is done:
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * Kunal Ghosh - Co-founder (VSD Corp. Pvt. Ltd)
-* Nickson Jose - VSD VLSI Engineer]
+* Nickson Jose - VSD VLSI Engineer
 * Akurathi Radhika
 * Praharsha 
