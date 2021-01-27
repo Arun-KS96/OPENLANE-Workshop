@@ -224,7 +224,7 @@ To view placement in Magic we use the following command:
 
   ![](/Figures/2.7.png)
   
-This is _picorv32a_ layout in MAGIC:
+This is _picorv32a_ placement layout in MAGIC:
   
   ![](/Figures/2.8.png)
 
