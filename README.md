@@ -202,7 +202,7 @@ To view our floorplan in Magic we need to provide three files as input:
   * _Def file of floorplan_
   * _Merged LEF file_
   
-Below we can see the layout view in the MAGIC: 
+Below we can see the floorplan layout in the MAGIC: 
     
   ![](/Figures/2.4.png)
 
