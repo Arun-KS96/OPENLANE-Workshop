@@ -4,7 +4,7 @@
 <br />
 <p align="center">
 
-  ![](/images/advanced_physical_design.png)
+  ![](/Figures/logo.png)
 
   <h3 align="left">Advanced Physical Design Workshop - OPENLANE/SKY130</h3>
 </p>
@@ -93,7 +93,7 @@ OpenLane is a fully-automated RTL2GDS flow which includes several components i.e
 
 ### Invoking OpenLane
 
-![](/images/2.png)
+![](/Figures/1.1.png)
   - Open terminal and change directory to work/tools/openlane_working_dir/openLANE_flow
   - List the contents of the openLANE_flow folder by using 'ls -ltr'
   - Then type './flow.tcl -interactive' which runs the OPENLANE flow
@@ -103,37 +103,41 @@ OpenLane is a fully-automated RTL2GDS flow which includes several components i.e
 ### Package Importing
 To import the packages into the OpenLane tool we run the following command: 
 
-![](/images/3.png)
+![](/Figures/1.2.png)
 
 ### Design Folder
 There are lots of design available in the OpenLane which are extracted from the openlane_flow/designs folder:
 
-![](/images/4.png)
+![](/Figures/1.3.png)
 
 ### Design Folder Hierarchy
 
-![](/images/5.png)
+![](/Figures/1.4.png)
 
 Each design hierarchy contains two different components i.e. src folder and config.tcl files. Src folder consists of verilog files and SDC constraints files whereas config.tcl file contains the design configuration switches which is used by OpenLane. 
 
 An example of a configuration file is given:
 
-  ![](/images/6.png)
+  ![](/Figures/1.5.png)
 
 ### Prepare Design
 Now, we prepare our design. So, to prepare our design we used the command called as "prep". It is used to make the file structure for our design. We also build a tag with the prep command shown below:
 
-  ![](/images/7.png)
+  ![](/Figures/1.6.png)
 
 Once the preparation is complete, go to the openlane_flow/design/picorv32a folder and you'll see one more directory called as trial_run1 is created under the runs folder, shown below:
 
-  ![](/images/8.png)
+  ![](/Figures/1.7.png)
 
 ### Synthesis
 
 To run synthesis just type "run_synthesis" command inside the OpenLane tool:
 
-  ![](/images/10.png)
+  ![](/Figures/1.8.png)
+  
+  ![](/Figures/1.9.png)
+  
+  ![](/Figures/1.10.png)
 
       
 <!-- Day-2 Chip Floorplanning and Placement-->
@@ -165,11 +169,11 @@ Pin placement is a step in which we place the IO pins in the area between core a
 
 To run floorplan in OpenLane:
 
-  ![](/images/11.png)
+  ![](/Figures/2.1.png)
 
 As with all other stages, the floorplanning will be run according to configuration settings in the design specific _config.tcl_ file. The output the the floorplanning phase is a DEF file which describes core area and placement of standard cell SITES:
 
-  ![](/images/12.png)
+  ![](/Figures/2.2.png))
 
 ### Viewing Floorplan in Magic
 
@@ -179,9 +183,9 @@ To view our floorplan in Magic we need to provide three files as input:
   * _Def file of floorplan_
   * _Merged LEF file_
 
-  ![](/images/13.png)
+  ![](/Figures/2.3.png)
     
-  ![](/images/14.png)
+  ![](/Figures/2.4.png)
 
 ### Placement
 
@@ -189,15 +193,17 @@ The next step after floorplanning is placement. In this step, we place the logic
 
 To do placement in OpenLANE:
 
-  ![](/images/15.png)
+  ![](/Figures/2.5.png)
 
 ### Viewing Placement in Magic
 
 To view placement in Magic the command mirrors viewing floorplanning:
 
-  ![](/images/17.png)
+  ![](/Figures/2.6.png)
   
-  ![](/images/18.png)
+  ![](/Figures/2.7.png)
+  
+  ![](/Figures/2.8.png)
 
 ### Standard Cell Design Flow
 
@@ -215,43 +221,45 @@ Cell design flow is done in 3 parts:
 
 To invoke the Magic we use the following command:
 
-  ![](/images/20.png)
+  ![](/Figures/3.1.png)
 
 Below we'll see the layout of an inverter in magic:
 
-  ![](/images/21.png)
+  ![](/Figures/3.2.png)
 
 ### Device Conjecture
 
 To know the layer/device onto the layout you just need to hover over the object and press s until you select the object which you want to select and then run the what command in the tkcon window.
 
-![](/images/22.png)
+![](/Figures/3.3.png)
 
 ### Parasitics Extraction with Magic
 
 To extract the parasitics with magic first you need to run the below command in the tkcon window:
 
-![](/images/27.png)
+![](/Figures/3.4.png)
 
 Once the extracted file is generated we need to run the below command to output the .ext file to a spice file:
 
-![](/images/28.png)
+![](/Figures/3.5.png)
 
-![](/images/29.png)
+![](/Figures/3.6.png)
 
 ### Spice Simulation using ngspice
 
 SPICE file created from *sky130_inv.ext* - technology:
 
-![](/images/30.png)
+![](/Figures/3.7.png)
 
 Now, we have to run the simulation with ngspice and to do so we have to invoke the ngspice tool with a spice file as an input:
 
-![](/images/31.png)
+![](/Figures/3.8.png)
 
 We are the plotting the output i.e. y vs time while sweeping the input i.e. a:
 
-![](/images/32.png)
+![](/Figures/3.9.png)
+
+![](/Figures/3.10.png)
 
 
 <!-- Day-4 Layout STA and Clock Tree Synthesis -->
@@ -266,7 +274,7 @@ There are two types of LEF files, one is the **technology lef** and the other on
   * _Technology LEF - It contains layer information, via information, and restricted DRC rules_
   * _Cell LEF - It contains the abstract information of standard cells_
 
-![](/images/33.png)
+![](/Figures/4.1.png)
 
 Above you see a tracks.info file which contains the offset and pitch information of different layers. In the fig. above you see, the metal1 layer the x or horizontal layer is at an offset of 0.17 and a pitch of 0.34. The metal2 layer the x is at an offset of 0.23 and a pitch of 0.46 and so on. 
 
@@ -276,21 +284,21 @@ Standard cell is cluster of transistors and interconnect structures that provide
 
 To display the grid in magic we use the *grid* command:
 
-![](/images/34.png)
+![](/Figures/4.2.png)
 
 You can see the grid boxes in the layout below:
 
-![](/images/35.png)
+![](/Figures/4.3.png)
 
 ### Writing LEF in Magic
 
 To write the lef file we used the *write* command which generate the LEF output sky130_vsdinv.lef for cell_sky130_vsdinv:
 
-![](/images/36.png)
+![](/Figures/4.4.png)
 
 sky130_vsdinv.lef file:
 
-![](/images/37.png)
+![](/Figures/4.5.png)
 
 ### Including Custom Cells in OpenLane
 
@@ -299,16 +307,16 @@ To include the new cells in OpenLane we need to do some configuration:
   * _Include cell level library file in top level library file_
   * _Now we configure the config.tcl file:_
 
-  ![](/images/38.png)
+  ![](/Figures/4.6.png)
 
 
   4. Overwrite trial_run1 to include new configuration switches:
   
-  ![](/images/39.png)
+  ![](/Figures/4.7.png)
 
   5. Now we run two additional commands to include extra cell LEFs:
   
-  ![](/images/40.png)
+  ![](/Figures/4.8.png)
 
 ### Fixing Slack Violations
 
@@ -316,27 +324,27 @@ Static timing analysis is a step which ensures that whether there is any timing 
 
 Run the OpenSTA tool with the configuration file:
 
-![](/images/41.png)
+![](/Figures/4.9.png)
 
 ### Replace the Cell Example:
 
 To improve the slack value we use the technique of upsizing the cell. To do the same we replace the downsize cells with the upsize cells:
 
-![](/images/43.png)
+![](/Figures/4.10.png)
 
 After this we run the report_checks command to check the slack value:
 
-![](/images/46.png)
+![](/Figures/4.11.png)
 
 ### Clock Tree Synthesis
 
 After completing floorplan and standard cell placement in OpenLANE we are ready to run the clock tree synthesis.To run clock tree synthesis (CTS) in OpenLANE:
 
-![](/images/47.png)
+![](/Figures/4.12.png)
 
 CTS runs successfully:
 
-![](/images/48.png)
+![](/Figures/4.13.png)
 
 ### Post-CTS STA Analysis
 
@@ -344,21 +352,21 @@ OpenLane contains the OpenRoad application unified into its flow and the OpenRoa
 
 To call OpenRoad from OpenLane you just run the below command inside the OpenLane:
 
-![](/images/49.png)
+![](/Figures/4.14.png)
 
 Now we have to read the .lef file and the .def file:
 
-![](/images/49.png)
+![](/Figures/4.15.png)
 
-![](/images/49.png)
+![](/Figures/4.16.png)
 
 Now, we have to create .db file i.e. pico_cts.db and after that we have to read that .db file:
 
-![](/images/49.png)
+![](/Figures/4.17.png)
 
 Now we have to read the verilog file, min and max library files, and the sdc file:
 
-![](/images/51.png)
+![](/Figures/4.18.png)
 
 
 <!-- Day-5 Final Steps Routing and SPEF Extraction -->
@@ -368,25 +376,25 @@ Now we have to read the verilog file, min and max library files, and the sdc fil
 
 After completing the clock tree synthesis and the static timing analysis we go for the routing. First we have the check the CURRENT_DEF:
 
-![](/images/52.png)
+![](/Figures/5.1.png)
 
 Then, we run the routing in the OpenLane:
 
-![](/images/52.png)
+![](/Figures/5.2.png)
 
 Routing runs succesfully:
 
-![](/images/52.png)
+!![](/Figures/5.3.png)
 
 ### Generate Power Distribution Network
 
 To generate the power distribution network (PDN) in OpenLANE:
 
-![](/images/53.png)
+![](/Figures/5.4.png)
 
 PDN is generated:
 
-![](/images/52.png)
+![](/Figures/5.5.png)
 
 ### SPEF Extraction
 
@@ -394,11 +402,11 @@ SPEF stands for Standard Parasitics Exchange Format. Its an IEEE 1481-1999 forma
 
 To run the SPEF extraction we use the following command:
 
-![](/images/52.png)
+![](/Figures/5.6.png)
 
 Writing SPEF file is done:
 
-![](/images/52.png)
+![](/Figures/5.7.png)
 
 
 <!-- ACKNOWLEDGEMENTS -->
