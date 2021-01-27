@@ -185,7 +185,7 @@ To run floorplan in OpenLANE:
 
 In the figure below you see _picorv32a.floorplan.def_ file which describes the core area and placement of standard cell sites.
 
-  ![](/Figures/2.2.png))
+  ![](/Figures/2.2.png)
   
 Floorplanning runs successfully:
 
