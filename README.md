@@ -37,7 +37,7 @@
         <li><a href="#preplaced-cells">Preplaced Cells</a></li>
         <li><a href="#decoupling-capacitors">Decouping Capacitors</a></li>
         <li><a href="#power-planning">Power Planning</a></li>
-        <li><a href="#pin-placement">Pin Placement and Logical Cell Placement Blockage</a></li>
+        <li><a href="#pin-placement-and-logical-cell-placement-blockage">Pin Placement and Logical Cell Placement Blockage</a></li>
         <li><a href="#floorplanning-with-openlane">Floorplanning with OpenLane</a></li>
         <li><a href="#viewing-floorplan-in-magic">Viewing Floorplan in Magic</a></li>
         <li><a href="#placement">Placement</a></li>
@@ -51,11 +51,11 @@
         <li><a href="#layout-of-an-inverter-using-magic">Layout of an Inverter using Magic</a></li>
         <li><a href="#device-conjecture">Device Conjecture</a></li>
         <li><a href="#parasitics-extraction-with-magic">Parasitics Extraction with Magic</a></li>
-        <li><a href="#spice-simulation-using-magic">Spice Simulation using ngspice</a></li>
+        <li><a href="#spice-simulation-using-ngspice">Spice Simulation using ngspice</a></li>
       </ul>
     </li>  
     <li>
-      <a href="#day-4-layout-timing-analysis-and-cts">Day-4 Layout STA and Clock Tree Synthesis</a>
+      <a href="#day-4-layout-sta-and-clock-tree-synthesis">Day-4 Layout STA and Clock Tree Synthesis</a>
       <ul>
         <li><a href="#lef-files-introduction">LEF Files Introduction</a></li>
         <li><a href="#standard-cell-pin-placement">Standard Cell Pin Placement</a></li>
@@ -80,33 +80,35 @@
 </details>
 
 
+
 <!-- About the Project -->
 ## About The Project
 
-This project is mainly focuses on the RTL2GDS flow using the open source EDA tool OpenLane/Sky130. In this project, we go through each and every step of a physical design flow i.e. synthesis, floorplanning, placement, clock tree synthesis, routing, static timing analysis anf SPEF extraction.
+This project is mainly focuses on the RTL2GDS flow using the open source EDA tool OpenLANE/Sky130. In this project, we go through each and every step of a physical design flow i.e. synthesis, floorplanning, placement, clock tree synthesis, routing, static timing analysis anf SPEF extraction.
 
-OpenLane is a fully-automated RTL2GDS flow which includes several components i.e. OpenRoad, Magic, Yosys, Fault, Netgen etc. This tool is started for true open source tape-out experience with the goal to produce clean GDSII without any human intervention. 
+OpenLANE is a fully-automated RTL2GDS flow which includes several components i.e. OpenRoad, Magic, Yosys, Fault, Netgen etc. This tool is started for true open source tape-out experience with the goal to produce clean GDSII without any human intervention. 
+
 
 
 <!-- Day-1 Commencement of Open Source EDA -->
 ## Day-1 Commencement of Open Source EDA
 
-### Invoking OpenLane
+### Invoking OpenLANE
 
 ![](/Figures/1.1.png)
   - Open terminal and change directory to _work/tools/openlane_working_dir/openLANE_flow_
   - List the contents of the openLANE_flow folder by using _ls -ltr_
   - Then type _./flow.tcl -interactive_ which runs the OPENLANE flow
-  - There are two modes to run OpenLane i.e. interactively and autonomous mode
+  - There are two modes to run OpenLANE i.e. interactively and autonomous mode
   - _-interactive_ is used here to run the flow.tcl script in interactive mode 
    
 ### Package Importing
-To import the packages into the OpenLane tool we run the following command: 
+To import the packages into the OpenLANE tool we run the following command: 
 
 ![](/Figures/1.2.png)
 
 ### Design Folder
-There are lots of design available in the OpenLane which are extracted from the _openlane_flow/designs_ folder:
+There are lots of design available in the OpenLANE which are extracted from the _openlane_flow/designs_ folder:
 
 ![](/Figures/1.3.png)
 
@@ -121,7 +123,7 @@ An example of a configuration file is given below:
   ![](/Figures/1.5.png)
 
 ### Prepare Design
-Now, we prepare our design. So, to prepare our design we used the command called as _prep_. It is used to make the file structure for our design. We also build a tag with the prep command shown below:
+Now, we have to prepare our design. So, to prepare our design we used the command called as _prep_. It is used to make the file structure for our design. We also build a tag with the _prep_ command shown below:
 
   ![](/Figures/1.6.png)
   
@@ -143,7 +145,8 @@ Synthesis was successful:
   
   ![](/Figures/1.10.png)
 
-      
+
+
 <!-- Day-2 Chip Floorplanning and Placement-->
 ##  Day-2 Chip Floorplanning and Placement
 
@@ -205,7 +208,7 @@ Below we can see the layout view in the MAGIC:
 
 ### Placement
 
-The next step after floorplanning is placement. In this step, we place the logical cells i.e. flip-flop, AND gate etc. on the chip where we find the appropriate location. After running floorplanning in the OpenLane, we run the placement using **"run_placement"** command.
+The next step after floorplanning is placement. In this step, we place the logical cells i.e. flip-flop, AND gate etc. on the chip where we find the appropriate location. After running floorplanning in the OpenLANE, we run the placement using **"run_placement"** command.
 
 To do placement in OpenLANE:
 
@@ -234,6 +237,7 @@ Cell design flow is done in 3 parts:
   * _Outputs - CDL (Circuit Description Language), GDSII, LEF, extracted Spice netlist (.cir), timing, noise, power.libs, function._
 
 
+
 <!-- Day-3 Design Library Cell -->
 ## Day-3 Design Library Cell
 
@@ -249,7 +253,7 @@ Below we'll see the layout of an inverter in magic:
 
 ### Device Conjecture
 
-To know the layer/device onto the layout you just need to hover over the object and press s until you select the object which you want to select and then run the _what_ command in the tkcon window.
+To know the layer/device onto the layout you just need to hover over the object and press **s** until you select the object which you want to select and then run the _what_ command in the tkcon window.
 
 ![](/Figures/3.3.png)
 
@@ -263,11 +267,13 @@ Once the extracted file is generated we need to run the below command to output 
 
 ![](/Figures/3.5.png)
 
+SPICE file created from *sky130_inv.ext* - technology:
+
 ![](/Figures/3.6.png)
 
 ### Spice Simulation using ngspice
 
-SPICE file created from *sky130_inv.ext* - technology:
+Here, we do some modification in the sky130_inv.spice file by adding Vdd, Vss etc.
 
 ![](/Figures/3.7.png)
 
@@ -279,7 +285,10 @@ We are the plotting the output i.e. y vs time while sweeping the input i.e. a:
 
 ![](/Figures/3.9.png)
 
+**OUTPUT:**
+
 ![](/Figures/3.10.png)
+
 
 
 <!-- Day-4 Layout STA and Clock Tree Synthesis -->
@@ -388,6 +397,7 @@ Now we have to read the verilog file, min and max library files, and the sdc fil
 ![](/Figures/4.18.png)
 
 
+
 <!-- Day-5 Final Steps Routing and SPEF Extraction -->
 ##  Day-5 Final Steps Routing and SPEF Extraction
 
@@ -426,6 +436,7 @@ To run the SPEF extraction we use the following command:
 Writing SPEF file is done:
 
 ![](/Figures/5.7.png)
+
 
 
 <!-- ACKNOWLEDGEMENTS -->
